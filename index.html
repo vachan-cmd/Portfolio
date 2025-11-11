@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio | Vachan Durgekar</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+    <style>
+      /* --- NEW: CSS Variables for easy theme changes --- */
+      :root {
+        --bg-color: #f9f9f9; /* Light grey background */
+        --content-bg: #ffffff; /* White for cards/content */
+        --primary-text: #222; /* Darker text */
+        --secondary-text: #555;
+        --accent-color: #007bff; /* A professional blue */
+        --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        --shadow-hover: 0 6px 16px rgba(0, 0, 0, 0.1);
+      }
+      
+      /* Basic Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* --- UPDATED: Body styling for new font and colors --- */
+      body {
+        background-color: var(--bg-color);
+        color: var(--primary-text);
+        font-family: 'Inter', 'Arial', sans-serif;
+        line-height: 1.6;
+      }
+
+      /* --- NO CHANGES BELOW (Logo) --- */
+      .logo {
+        font-size: 2rem;
+        text-transform: uppercase;
+        position: fixed;
+        top: 20px;
+        left: 30px;
+        z-index: 100;
+        font-family: "Negan-DEMO", "Lucida Sans", "Lucida sans Unicode", Verdana,
+          Geneva, Tahoma, sans-serif;
+      }
+
+      /* --- NO CHANGES BELOW (Navigation Menu) --- */
+      .side-nav {
+        height: auto;
+        width: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        position: fixed;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(5px);
+        border-radius: 30px;
+        padding: 20px 0;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        gap: 20px;
+      }
+
+      .side-nav .nav-item {
+        position: relative;
+        text-decoration: none;
+        color: #333;
+      }
+
+      .side-nav .bi {
+        font-size: 30px;
+        padding: 10px;
+        transition: transform 0.2s ease;
+      }
+
+      .side-nav .nav-item:hover .bi {
+        transform: scale(1.2);
+      }
+
+      .side-nav .nav-item span {
+        position: absolute;
+        top: 50%;
+        right: 60px;
+        transform: translateY(-50%);
+        background-color: #333;
+        color: #fff;
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-weight: 500;
+        display: block;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, right 0.3s ease;
+        z-index: -1;
+        white-space: nowrap;
+      }
+
+      .side-nav .nav-item:hover span {
+        visibility: visible;
+        opacity: 1;
+        right: 70px;
+      }
+      /* --- NO CHANGES ABOVE --- */
+
+
+      /* --- NEW: Container class to center content --- */
+      .container {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* Main Content Sections */
+      main {
+        width: 100%;
+      }
+
+      /* --- UPDATED: Section styling --- */
+      section {
+        /* Home section is still 100vh, others are based on content */
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 100px 20px; /* Added more padding for spacing */
+      }
+      
+      /* Make the home section fill the screen */
+      section#home {
+        min-height: 100vh;
+      }
+
+      /* Give other sections a subtle background */
+      section:nth-of-type(even) {
+         background-color: var(--content-bg);
+      }
+
+      /* --- UPDATED: Section heading style --- */
+      section h2 {
+        font-size: 2.5rem; /* Slightly smaller, more modern */
+        font-weight: 800;
+        margin-bottom: 50px; /* More space below heading */
+        color: var(--primary-text);
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      
+      section h2::after {
+        content: '';
+        display: block;
+        width: 60px;
+        height: 4px;
+        background: var(--accent-color);
+        margin: 10px auto 0;
+        border-radius: 2px;
+      }
+
+      section p {
+        font-size: 1.1rem;
+        color: var(--secondary-text);
+        max-width: 700px;
+        text-align: center;
+      }
+
+      /* --- HOME SECTION --- */
+      #home img {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 25px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        border: 5px solid var(--content-bg);
+      }
+
+      #home h2 {
+        font-size: 3.5rem;
+        font-weight: 800;
+        color: var(--primary-text);
+        margin-bottom: 10px;
+      }
+      
+      #home h2::after {
+        display: none; /* Remove underline for main name */
+      }
+
+      #home p {
+        font-size: 1.5rem;
+        color: var(--accent-color);
+        font-weight: 500;
+      }
+
+      /* --- ABOUT SECTION --- */
+      #about p {
+        font-size: 1.2rem;
+        line-height: 1.8;
+      }
+
+      /* --- SKILLS SECTION --- */
+      #skills ul {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap; /* Allow skills to wrap on smaller screens */
+        justify-content: center; /* Center the skills */
+        gap: 20px;
+        padding: 0;
+      }
+
+      #skills li {
+        background: var(--content-bg);
+        padding: 12px 25px;
+        border-radius: 30px; /* Pill shape */
+        font-weight: 600;
+        font-size: 1rem;
+        box-shadow: var(--shadow);
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+      
+      #skills li:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-hover);
+      }
+
+
+      /* --- PROJECTS SECTION (Major Redesign) --- */
+      .projects-container {
+        display: grid;
+        /* Create 3 responsive columns */
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        width: 100%;
+        max-width: 1000px;
+      }
+
+      .project-card {
+        background: var(--content-bg);
+        border-radius: 10px;
+        box-shadow: var(--shadow);
+        padding: 30px;
+        text-align: left; /* Left-align text inside cards */
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+      
+      .project-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-hover);
+      }
+
+      .project-card h3 {
+        color: var(--accent-color);
+        font-size: 1.3rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+      }
+
+      .project-card p {
+        text-align: left;
+        font-size: 1rem;
+      }
+
+      /* --- CONTACT SECTION (Major Redesign) --- */
+      .contact-list {
+        list-style: none;
+        padding: 0;
+        max-width: 500px;
+        width: 100%;
+      }
+      
+      .contact-list li {
+        display: flex;
+        align-items: center;
+        background: var(--content-bg);
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: var(--shadow);
+        margin-bottom: 20px;
+        font-size: 1.1rem;
+        font-weight: 500;
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+      
+      .contact-list li:hover {
+         transform: translateY(-3px);
+         box-shadow: var(--shadow-hover);
+      }
+      
+      .contact-list .bi {
+        font-size: 1.8rem;
+        color: var(--accent-color);
+        margin-right: 20px;
+        min-width: 30px; /* Align text */
+      }
+      
+      .contact-list a {
+        text-decoration: none;
+        color: var(--primary-text);
+        transition: color 0.3s;
+      }
+      
+      .contact-list a:hover {
+        color: var(--accent-color);
+      }
+
+    </style>
+  </head>
+  <body>
+    <h1 class="logo">Portfolio</h1>
+
+    <nav class="side-nav">
+      <a class="nav-item" href="#home">
+        <i class="bi bi-house"></i>
+        <span>Home</span>
+      </a>
+      <a class="nav-item" href="#about">
+        <i class="bi bi-file-person"></i>
+        <span>About</span>
+      </a>
+      <a class="nav-item" href="#skills">
+        <i class="bi bi-code-slash"></i>
+        <span>Skills</span>
+      </a>
+      <a class="nav-item" href="#projects">
+        <i class="bi bi-kanban"></i>
+        <span>Projects</span>
+      </a>
+      <a class="nav-item" href="#contact">
+        <i class="bi bi-telephone-forward"></i>
+        <span>Contact</span>
+      </a>
+    </nav>
+
+    <main>
+      <section id="home">
+        <img
+          src="D:\Downloads\Screenshot_7-11-2025_112221_.jpeg" alt="Vachan Durgekar"
+        />
+        <h2>Vachan Durgekar</h2>
+        <p>Python Full Stack & DevOps Enthusiast</p>
+      </section>
+
+      <section id="about">
+        <div class="container">
+          <h2>About Me</h2>
+          <p>
+            Detail-oriented and motivated recent graduate with a strong
+            foundation in Python and SQL, seeking to leverage programming skills
+            and problem-solving abilities in a Software Development role. Eager to
+            contribute to innovative projects and collaborate with a dynamic team.
+          </p>
+        </div>
+      </section>
+
+      <section id="skills">
+        <div class="container">
+          <h2>My Skills</h2>
+          <ul>
+            <li>Python (OOP)</li>
+            <li>HTML/CSS</li>
+            <li>DevOps (CI/CD)</li>
+            <li>SQL</li>
+            <li>Django</li>
+            <li>AWS</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="projects">
+        <div class="container">
+          <h2>Projects</h2>
+          <div class="projects-container">
+            <div class="project-card">
+              <h3>Image Classification Using CNN</h3>
+              <p>
+                Built a Convolutional Neural Network model for classifying
+                flowers (rose, iris, hibiscus). Achieved a test accuracy of 70%.
+              </p>
+            </div>
+            <div class="project-card">
+              <h3>Autonomous Vehicle with Pedestrian Detection</h3>
+              <p>
+                Developed an algorithm for an autonomous vehicle to stop
+                automatically when a pedestrian is detected or when a Stop Sign
+                is identified.
+              </p>
+            </div>
+            <div class="project-card">
+              <h3>Used Car Price Prediction Model</h3>
+              <p>
+                Developed a neural network model to predict used car prices
+                based on input data such as model, year, mileage, condition, and
+                market trends.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="container">
+          <h2>Get In Touch</h2>
+          <ul class="contact-list">
+            <li>
+              <i class="bi bi-linkedin"></i>
+              <a href="https://linkedin.com/in/vachan-durgekar" target="_blank" rel="noopener noreferrer">
+                linkedin.com/in/vachan-durgekar
+              </a>
+            </li>
+            <li>
+              <i class="bi bi-envelope"></i>
+              <a href="mailto:vachan.official29@gmail.com">
+                vachan.official29@gmail.com
+              </a>
+            </li>
+            <li>
+              <i class="bi bi-phone"></i>
+              <span>+91 76765 17506</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
